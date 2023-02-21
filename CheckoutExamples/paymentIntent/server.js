@@ -6,7 +6,7 @@ require('dotenv').config()
 const stripe = require("stripe")(
   process.env.API_KEY
 );
-nunjucks.configure('./paymentIntent', {
+nunjucks.configure('./CheckoutExamples/paymentIntent', {
   express: app
 })
 

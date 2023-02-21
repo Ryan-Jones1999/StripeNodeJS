@@ -1,0 +1,16 @@
+Config
+---
+
+Please create a .env file at the root of the folder - The following environment variable need to be set in order to communicate with stripe
+This can be found in your stripe account check the word document for more information
+
+```
+API_KEY
+```
+
+How to use the application
+---
+
+1. Run `npm install` to build your application
+2. See package.json for list of commands
+3. Run npm run <chosen function> to start

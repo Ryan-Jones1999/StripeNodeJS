@@ -2,7 +2,7 @@
 PaymentMethod objects represent your customer's payment instruments. 
 You can use them with PaymentIntents to collect payments or save them to Customer objects to store instrument details for future payments.
 
-More information can be seen:
+More information on paramters etc can can be seen:
 https://stripe.com/docs/api/payment_methods
 */
 
@@ -47,10 +47,6 @@ async function retrievePaymentMethod(paymentMethodID){
     console.log(paymentMethod)
 }
 
-createPaymentMethod().then((paymentMethodId) => {
-    retrievePaymentMethod(paymentMethodId)
-})
-
 /*
 Returns an automatically generated id - Used for set up for below functions
 */
@@ -75,12 +71,60 @@ async function attatchPaymentMethodToCustomer(customerId, paymentMethodId){
         paymentMethodId,
         {customer: customerId}
       );
+      console.log('PAYMENT ATTACTHED')
+      console.log(paymentMethod)
 }
 
+/*
+Detatches payment method from the customer its attatched to
+*/
+async function detatchPaymentMethodFromCustomer(paymentMethodId){
+  const paymentMethod = await stripe.paymentMethods.detach(
+    paymentMethodId
+  );
+  console.log('DETATCHED FROM CUSTOMER')
+  console.log(paymentMethod)
+}
 /*
 Updates a payment method - note payment method must be attached to a customer to be updated
 */
 
-async function updatePaymentMethod(){
-
+async function updatePaymentMethod(paymentMethodId){
+  const paymentMethod = await stripe.paymentMethods.update(
+    paymentMethodId,
+    {billing_details:{
+      address:{
+        city:"updated",
+        country:"GB"
+      }
+    }}
+  );
+  console.log('UPDATED DETAILS')
+  console.log(paymentMethod)
 }
+
+/*
+Lists the payment methods attatched to a customer which can be filtered by the type option - note this is optional and can be removed
+*/
+async function listPaymentMethodForACustomer(customerId){
+  const paymentMethods = await stripe.customers.listPaymentMethods(
+    customerId,
+    {type: 'card'}
+  );
+  console.log('Listed payment methods')
+  console.log(paymentMethods)
+}
+
+createPaymentMethod().then((paymentMethodId) => {
+  retrievePaymentMethod(paymentMethodId).then(() => {
+    createCustomer().then((customerId) => {
+      attatchPaymentMethodToCustomer(customerId,paymentMethodId).then(() => {
+        updatePaymentMethod(paymentMethodId).then(() =>{
+          listPaymentMethodForACustomer(customerId).then(() => {
+            detatchPaymentMethodFromCustomer(paymentMethodId)
+          })
+        })
+      })
+    })
+  })
+})

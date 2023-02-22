@@ -8,6 +8,11 @@ This can be found in your stripe account check the word document for more inform
 API_KEY
 ```
 
+To find out your endpoint secret checkout chapter 4 in the word document - this will be required for the bank transfer checkout example
+```
+ENDPOINT_SECRET
+```
+
 How to use the application
 ---
 

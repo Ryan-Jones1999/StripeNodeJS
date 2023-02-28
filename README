@@ -19,3 +19,12 @@ How to use the application
 1. Run `npm install` to build your application
 2. See package.json for list of commands
 3. Run npm run <chosen function> to start
+
+
+How to use the live checkout examples
+---
+
+1. Run the server 
+2. Navigate to http://localhost:4242/create-checkout-sesion
+3. Click on the checkout button 
+4. See comment above the post - create-checkout-session in the server for information on how to trigger payment

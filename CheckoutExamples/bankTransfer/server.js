@@ -40,7 +40,7 @@ stripe test_helpers customers fund_cash_balance "<customer.id>" \
   --currency=gbp
 
 */
-app.post('/create-checkout-session', async (req, res) => {
+app.post('/create-checkout-sesion', async (req, res) => {
 
   const customer = await stripe.customers.create();
 

@@ -51,13 +51,13 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'http://localhost:3000/success',
-    cancel_url: 'http://localhost:3000/create-checkout-session',
+    success_url: 'http://localhost:4242/success',
+    cancel_url: 'http://localhost:4242/create-checkout-session',
   });
 
   res.redirect(303, session.url);
 });
 
-app.listen(3000, () => console.log(`Listening on port ${3000}!`));
+app.listen(4242, () => console.log(`Listening on port ${4242}!`));
 
   

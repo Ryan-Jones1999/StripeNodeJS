@@ -1,5 +1,6 @@
 /*
 For more information see: https://stripe.com/docs/invoicing/integration/virtual-bank-numbers
+Note sources is deprecated - paymentMethod should now be used - see billing/paymentMethod example
 */
 
 require('dotenv').config()
@@ -16,6 +17,8 @@ const source = await stripe.sources.create({
   currency: 'usd',
   owner: {email: 'test@gmail.com'},
 });
+console.log('CREATED VIRTUAL BANK ACCOUNT')
+console.log(source)
 return source.id
 }
 
@@ -34,6 +37,8 @@ async function attatchToCustomer(value){
     email: 'test@gmail.com',
     source: value
   });
+  console.log('ATTATCHED TO CUSTOMER FOR FUTURE PAYMENTS')
+  console.log(customer)
 }
 
 //Calls the functions

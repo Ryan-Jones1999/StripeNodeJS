@@ -4,9 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "invoice": "node Billing/invoices.js",
+    "paymentmethod": "node Billing/paymentMethod.js",
+    "quotes": "node Billing/quotes.js",
+    "subscriptionitems":"node Billing/subscriptionItems.js",
+    "subscriptions": "node Billing/subscriptions.js",
+
     "banktransfer": "node CheckoutExamples/bankTransfer/server.js",
-    "cardpayment": "node CheckoutExamples/paymentIntent/server.js"
+    "cardpayment": "node CheckoutExamples/paymentIntent/server.js",
+
+    "customer": "node CoreResources/createCustomer.js",
+
+    "virtualbankaccount": "node products/createVirtualBankAccount.js",
+    "price": "node products/price.js",
+    "products": "node products/product.js"
   },
   "author": "Ryan Jones <ryan.jones@kainos.com>",
   "license": "ISC",
